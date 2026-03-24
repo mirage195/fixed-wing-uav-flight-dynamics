@@ -2,13 +2,21 @@ from src.aircraft_parameters import get_aircraft
 from src.stability_derivatives import compute_all_derivatives, TrimCondition
 from src.longitudinal_model import build_longitudinal_model
 from src.lateral_derivatives import compute_lateral_derivatives
-from src.eigen_analysis import analyze_longitudinal_modes, plot_eigenvalues
+from src.lateral_model import build_lateral_model
+from src.eigen_analysis import (
+    analyze_longitudinal_modes,
+    analyze_lateral_modes,
+    plot_eigenvalues
+)
 
 import numpy as np
 
 
 def main():
 
+    # =========================
+    # AIRCRAFT
+    # =========================
     aircraft = get_aircraft()
 
     # =========================
@@ -25,7 +33,7 @@ def main():
     )
 
     # =========================
-    # AERO DATA (replace later)
+    # AERO DATA
     # =========================
     aero_data = {
         "V_samples": np.array([40,45,50,55,60]),
@@ -40,22 +48,20 @@ def main():
     }
 
     # =========================
-    # LONGITUDINAL
+    # LONGITUDINAL DERIVATIVES
     # =========================
-    derivatives = compute_all_derivatives(
+    long_der = compute_all_derivatives(
         trim=trim,
         tail=aircraft.tail,
         aero_data=aero_data
     )
 
-    A_lon = build_longitudinal_model(aircraft, derivatives)
-
-    print("\n=== LONGITUDINAL MODES ===")
-    analyze_longitudinal_modes(A_lon)
-    plot_eigenvalues(A_lon)
+    print("\n=== LONGITUDINAL DERIVATIVES ===")
+    for k, v in long_der.items():
+        print(f"{k}: {v:.4f}")
 
     # =========================
-    # LATERAL
+    # LATERAL DERIVATIVES
     # =========================
     lat_der = compute_lateral_derivatives(
         aircraft,
@@ -72,7 +78,28 @@ def main():
     )
 
     print("\n=== LATERAL DERIVATIVES ===")
-    print(lat_der)
+    for k, v in lat_der.items():
+        print(f"{k}: {v:.4f}")
+
+    # =========================
+    # BUILD MODELS
+    # =========================
+    A_lon = build_longitudinal_model(aircraft, long_der)
+    A_lat = build_lateral_model(aircraft, lat_der)
+
+    # =========================
+    # EIGEN ANALYSIS
+    # =========================
+
+    # -------- LONGITUDINAL --------
+    print("\n=== LONGITUDINAL MODES ===")
+    analyze_longitudinal_modes(A_lon)
+    plot_eigenvalues(A_lon)
+
+    # -------- LATERAL --------
+    print("\n=== LATERAL MODES ===")
+    analyze_lateral_modes(A_lat)
+    plot_eigenvalues(A_lat)
 
 
 if __name__ == "__main__":

@@ -44,3 +44,11 @@ The model includes:
 
 ### Longitudinal Eigenvalues
 
+```
+[-15.10, -0.41, 0.048 ± 0.191j]
+```
+
+### Key Observation
+
+The phugoid mode exhibits slight instability due to low aerodynamic damping, highlighting sensitivity to drag modeling and trim conditions.
+

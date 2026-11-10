@@ -1,0 +1,86 @@
+schema_version = 1
+data_status = "illustrative; not flight validated"
+
+[aircraft]
+name = "Illustrative 13.5 kg fixed-wing UAV"
+provenance = "Example values inherited from the original repository; aerodynamic and flight-test provenance has not yet been supplied."
+mass_kg = 13.5
+reference_speed_m_s = 25.0
+air_density_kg_m3 = 1.225
+gravity_m_s2 = 9.80665
+
+[aircraft.inertia]
+Ixx = 0.8244
+Iyy = 1.135
+Izz = 1.759
+Ixz = 0.1204
+
+[aircraft.wing]
+area_m2 = 0.55
+span_m = 2.90
+mean_chord_m = 0.19
+sweep_quarter_chord_deg = 0.0
+dihedral_deg = 0.0
+
+[aircraft.fuselage]
+side_area_m2 = 0.20
+aerodynamic_center_z_m = -0.02
+
+[aircraft.fin]
+area_m2 = 0.10
+moment_arm_m = 0.80
+aerodynamic_center_z_m = 0.10
+lift_curve_slope_per_rad = 2.5
+
+[aircraft.tail]
+area_m2 = 0.12
+moment_arm_m = 0.90
+lift_curve_slope_per_rad = 3.5
+
+[aircraft.propulsion]
+maximum_thrust_n = 30.0
+thrust_speed_derivative_n_s_m = 0.0
+
+[aircraft.controls]
+elevator_deg = [-25.0, 25.0]
+aileron_deg = [-20.0, 20.0]
+rudder_deg = [-25.0, 25.0]
+throttle = [0.0, 1.0]
+
+[aerodynamics]
+provenance = "Illustrative curves based on the original repository and provisional control derivatives; not wind-tunnel, CFD, or flight-test validated."
+speed_range_m_s = [20.0, 30.0]
+alpha_deg = [-4.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0, 10.0]
+CL = [-0.05, 0.10, 0.25, 0.40, 0.55, 0.70, 0.85, 0.95]
+CD = [0.035, 0.031, 0.030, 0.031, 0.034, 0.040, 0.050, 0.065]
+Cm = [0.060, 0.040, 0.020, 0.000, -0.020, -0.040, -0.060, -0.080]
+
+[aerodynamics.longitudinal_derivatives]
+CL_q = 7.0
+Cm_q = -18.0
+CL_alpha_dot = 2.5
+Cm_alpha_dot = -7.0
+CL_delta_e = 0.30
+CD_delta_e = 0.0
+Cm_delta_e = -1.10
+CX_q = 0.0
+dCL_dV = 0.0
+dCD_dV = 0.0
+dCm_dV = 0.0
+
+[aerodynamics.lateral_derivatives]
+CY_beta = -0.4618
+Cl_beta = -0.0157
+Cn_beta = 0.1254
+CY_p = -0.5486
+Cl_p = -0.4832
+Cn_p = -0.0418
+CY_r = 0.1254
+Cl_r = 0.1046
+Cn_r = -0.0480
+CY_delta_a = 0.0
+Cl_delta_a = 0.12
+Cn_delta_a = 0.02
+CY_delta_r = 0.18
+Cl_delta_r = 0.02
+Cn_delta_r = -0.10

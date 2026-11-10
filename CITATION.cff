@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "Fixed-Wing UAV Flight Dynamics"
+type: software
+authors:
+  - family-names: Beri
+    given-names: Harshit
+    email: harshit04beri@gmail.com
+repository-code: "https://github.com/mirage195/fixed-wing-uav-flight-dynamics"
+url: "https://github.com/mirage195/fixed-wing-uav-flight-dynamics"
+license: GPL-3.0-or-later
+version: 0.1.0
